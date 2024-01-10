@@ -9,19 +9,24 @@ public class DBconnection {
 
 	public static void main(String[] args) {
 		
+		String dbname = "medicalstockmngmt";
+		String dbusername = "root";
+		String dbpassword ="ranjeet@sql";
+
 		try {
 			
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employeedb", "root" ,"ranjeet@sql");
-			
+			// Create DB connection 
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+ dbname, dbusername, dbpassword );
+
 			Statement statement = connection.createStatement();
-			ResultSet rs = statement.executeQuery("select * from empinfo");
-			
+			ResultSet rs = statement.executeQuery("select * from medicine");
+
 			while (rs.next()) {
-				System.out.println(rs.getString("Name"));
+				System.out.println(rs.getString("Suppliername"));
 			}
-			
+
 		} catch (SQLException e) {
-			System.out.println("Failed to connect to DB " + e.getMessage());	
+			System.out.println("Failed to connect to DB " + e.getMessage());
 		}
 
 	}
