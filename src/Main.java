@@ -22,6 +22,8 @@ public class Main {
 				break;
 			case 2:
 				System.out.println("Search Medicine Details");
+				MedicineManager med1 = new MedicineManager(DBconnection.connection);
+				med1.searchMedicineWithName();
 				break;
 			case 3:
 				System.out.println("Update Medicine Details");
