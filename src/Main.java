@@ -9,10 +9,16 @@ public class Main {
 
 		do {
 			displayMenu();
+			DBconnection createConnection = new DBconnection();
 			choice = getUserChoice();
+			
 			switch (choice) {
 			case 1:
 				System.out.println("Add new Medicine Details");
+				Medicine med = new Medicine(DBconnection.connection);
+				med.inputMedicineDetails();
+				med.insertMedicineDetails();
+				
 				break;
 			case 2:
 				System.out.println("Search Medicine Details");
@@ -59,5 +65,7 @@ public class Main {
 		return choice;
 
 	}
+	
+	
 
 }

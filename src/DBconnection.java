@@ -1,34 +1,28 @@
-
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class DBconnection {
+	
+	// Instance variables for connection
+    public static Connection connection;
 
-	public static void main(String[] args) {
-		
-		String dbname = "medicalstockmngmt";
-		String dbusername = "root";
-		String dbpassword ="ranjeet@sql";
+    public DBconnection() {
+        final String dburl = "jdbc:mysql://localhost:3306/medicalstockmngmt";
+        final String dbusername = "root";
+        final String dbpassword = "ranjeet@sql";
 
-		try {
-			
-			// Create DB connection 
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+ dbname, dbusername, dbpassword );
+        try {
+            // Create DB connection
+            connection = DriverManager.getConnection(dburl, dbusername, dbpassword);
+   
+        } catch (SQLException e) {
+            System.out.println("Failed to connect to DB " + e.getMessage());
+        }
+    }
 
-			Statement statement = connection.createStatement();
-			ResultSet rs = statement.executeQuery("select * from medicine");
 
-			while (rs.next()) {
-				System.out.println(rs.getString("Suppliername"));
-			}
-
-		} catch (SQLException e) {
-			System.out.println("Failed to connect to DB " + e.getMessage());
-		}
-
-	}
-
+    public static void main(String[] args) {
+    	
+    }
 }
