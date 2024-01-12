@@ -58,15 +58,14 @@ public class Medicine  {
 
 	        System.out.println("Enter Supplier Name: ");
 	        this.supplierName = scanner.nextLine();
-
+	        
+	        
+	        
 	        // Close the scanner to avoid resource leaks
-	        scanner.close();
+
 	    }
-	    
-	    
-	    
-	   
 	
+	    
 	// Method to insert a new medicine Details
 	 public void insertMedicineDetails() {
 	        try {
@@ -104,7 +103,7 @@ public class Medicine  {
 	 
 	 
 	 // Duplicate Combination Validation Helper Function
-	 private boolean isDuplicateCombination(String medicineName, String supplierName) {
+	 public boolean isDuplicateCombination(String medicineName, String supplierName) {
 		    try {
 		        Statement statement = connection.createStatement();
 
