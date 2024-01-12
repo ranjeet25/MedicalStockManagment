@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 public class Main {
@@ -14,25 +13,25 @@ public class Main {
 			
 			switch (choice) {
 			case 1:
-				System.out.println("Add new Medicine Details");
-				Medicine med = new Medicine(DBconnection.connection);
-				med.inputMedicineDetails();
-				med.insertMedicineDetails();
+				Medicine med1 = new Medicine(DBconnection.connection);
+				med1.inputMedicineDetails();
+				med1.insertMedicineDetails();
 				
 				break;
 			case 2:
-				System.out.println("Search Medicine Details");
-				MedicineManager med1 = new MedicineManager(DBconnection.connection);
-				med1.searchMedicineWithName();
+				MedicineManager med2 = new MedicineManager(DBconnection.connection);
+				med2.searchMedicineWithName();
 				break;
 			case 3:
-				System.out.println("Update Medicine Details");
+				MedicineManager med3 = new MedicineManager(DBconnection.connection);
+				med3.updateMedicineDetails();
 				break;
 			case 4:
-				System.out.println("View all Medicine Details");
+				MedicineManager med4 = new MedicineManager(DBconnection.connection);
+				med4.viewAvailableMedicine();
 				break;
 			case 5:
-				System.out.println("Generate Reports");
+				System.out.println(" ******* Comming Soon...... ******* ");
 				break;
 			case 6:
 				System.out.println("Exiting the program. Goodbye!");
@@ -47,7 +46,7 @@ public class Main {
 	// Display Menu method
 	public static void displayMenu() {
 
-		System.out.println("****** Medical Stock Management System ******");
+		System.out.println("****** Medical Stock Management System ******\n");
 
 		System.out.println("1. Add new Medicine Details");
 		System.out.println("2. Search Medicine Details");

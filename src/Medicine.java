@@ -1,4 +1,5 @@
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
@@ -20,8 +21,10 @@ public class Medicine  {
 	    private double purchaseRate;
 	    private String expiryDate;
 		private String supplierName;
-	    
-	    // Method 02
+		
+		
+	
+	    // Method to Take input of medicine details from the user
 	    public void inputMedicineDetails() {
 	        Scanner scanner = new Scanner(System.in);
 
@@ -59,20 +62,29 @@ public class Medicine  {
 	        // Close the scanner to avoid resource leaks
 	        scanner.close();
 	    }
+	    
+	    
+	    
+	   
 	
-	
-	// Method 02
+	// Method to insert a new medicine Details
 	 public void insertMedicineDetails() {
 	        try {
 	        	 Statement statement = connection.createStatement();
 	        	 
-	        	 // SQL query to insert medicine details
+	        	 	// SQL query to insert medicine details
 	                String insertQuery = "INSERT INTO medicine" +
 	                        "(medID, medicineType, medicineName, medicineCompany, Quantity, purchaseDate, purchaseRate, expiryDate, suppliername) " +
 	                        "VALUES ('" + this.medicineID + "', '" + this.medicineType + "', '" + this.medicineName + "', '" +
 	                        this.medicineCompany + "', " + this.medicineQuantity + ", '" + this.purchaseDate +
 	                        "', " + this.purchaseRate + ", '" + this.expiryDate + "', '" + this.supplierName + "')";
-
+	                
+	                // Validation Check
+	                if (medicineQuantity > 100 && isDuplicateCombination(medicineName, supplierName)) {
+	                    System.out.println("Error: Duplicate Supplier and Medicine Name combination for quantity > 100.");
+	                    return; // Do not proceed with the insertion
+	                }
+	                
 	                // Execute the query
 	                int rowEffected = statement.executeUpdate(insertQuery);
 	                
@@ -86,5 +98,29 @@ public class Medicine  {
 	            System.out.println("Error executing query: " + e.getMessage());
 	        }
 	    }
+	 
+	 
+	 
+	 
+	 
+	 // Duplicate Combination Validation Helper Function
+	 private boolean isDuplicateCombination(String medicineName, String supplierName) {
+		    try {
+		        Statement statement = connection.createStatement();
+
+		        String checkQuery = "SELECT COUNT(*) FROM medicine WHERE medicineName = '" + medicineName +
+		                            "' AND suppliername = '" + supplierName + "'";
+		        ResultSet resultSet = statement.executeQuery(checkQuery);
+
+		        if (resultSet.next()) {
+		            int count = resultSet.getInt(1);
+		            return count > 0; // If count > 0, the combination already exists
+		        }
+
+		    } catch (SQLException e) {
+		        System.out.println("Error executing query: " + e.getMessage());
+		    }
+		    return false; // Assume no duplicate combination (error case)
+		}
 
 }
