@@ -3,8 +3,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
+import org.apache.logging.log4j.*;
 
 public class Medicine  {
+	
+		public static Logger log = LogManager.getLogger(Medicine.class.getName());
 		
 		private Connection connection;
 		// Constructor for connection instance
@@ -59,9 +62,6 @@ public class Medicine  {
 	        System.out.println("Enter Supplier Name: ");
 	        this.supplierName = scanner.nextLine();
 	        
-	        
-	        
-	        // Close the scanner to avoid resource leaks
 
 	    }
 	
@@ -81,6 +81,7 @@ public class Medicine  {
 	                // Validation Check
 	                if (medicineQuantity > 100 && isDuplicateCombination(medicineName, supplierName)) {
 	                    System.out.println("Error: Duplicate Supplier and Medicine Name combination for quantity > 100.");
+	                    log.fatal("Error: Duplicate Supplier and Medicine Name combination for quantity > 100");
 	                    return; // Do not proceed with the insertion
 	                }
 	                

@@ -22,15 +22,15 @@ public class Main {
 				
 				break;
 			case 2:
-				MedicineManager searchMedicine = new MedicineManager(DBconnection.connection, log);
+				MedicineManager searchMedicine = new MedicineManager(DBconnection.connection);
 				searchMedicine.searchMedicineWithName();
 				break;
 			case 3:
-				MedicineManager updateMedicine = new MedicineManager(DBconnection.connection, log);
+				MedicineManager updateMedicine = new MedicineManager(DBconnection.connection);
 				updateMedicine.updateMedicineDetails();
 				break;
 			case 4:
-				MedicineManager viewAllMedicine = new MedicineManager(DBconnection.connection, log);
+				MedicineManager viewAllMedicine = new MedicineManager(DBconnection.connection);
 				viewAllMedicine.viewAvailableMedicine();
 				break;
 			case 5:

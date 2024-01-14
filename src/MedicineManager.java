@@ -12,7 +12,7 @@ public class MedicineManager {
 	public Logger log;
 
 	// Constructor for connection instance
-	public MedicineManager(Connection connection, Logger log) {
+	public MedicineManager(Connection connection) {
 		this.connection = connection;
 		this.log  = log;
 	}
@@ -48,6 +48,10 @@ public class MedicineManager {
 			System.out.println("Error executing query: " + e.getMessage());
 		}
 	}
+	
+	
+	
+	
 
 	// Method to Update Medicine Details
 
@@ -96,6 +100,9 @@ public class MedicineManager {
 			System.out.println("Error executing query: " + e.getMessage());
 		}
 	}
+	
+	
+	
 
 	// Method to Display all available medicines
 
